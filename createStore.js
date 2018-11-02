@@ -6,6 +6,7 @@ import {
 } from "redux";
 import createSagaMiddleware from 'redux-saga'
 import userReducer from "./reducers/userReducer";
+import rootSaga from './sagas';
 
 
 export default function createStore(){
@@ -21,7 +22,7 @@ export default function createStore(){
         )
     );
 
-    // sagaMiddleware.run(rootSaga);
+    sagaMiddleware.run(rootSaga);
     
     return store;
 }
