@@ -1,8 +1,8 @@
 import { updateName } from './actions/userAction';
-import { call, fork, takeLatest, put, all } from 'redux-saga/effects';
+import { call, takeLatest, put, all, takeEvery } from 'redux-saga/effects';
 
-function getData(){
-    const URL = 'http://localhost/';
+function getData(name){
+    const URL = 'http://localhost/saga/getNewName.php?name=' + name;
     return fetch(URL)
         .then(response=>response.json())
         .then(json => {
@@ -12,14 +12,15 @@ function getData(){
         .catch(error => console.log(error));
 }
 
-function* getDataAction(action){
+function* requestData(action){
     const data = yield call(getData, action.name);
-    yield put(updateName(data.status));
+    yield put(updateName(data.new_name));
 }
 
 //機能毎にまとめる
 const userSogas = [
-    takeLatest('UPDATE_NAME', getDataAction)
+    takeLatest('REQUEST_NAME', requestData)
+    // takeEvery('REQUEST_NAME', getDataAction)
 ];
 
 //いろいろまとめる

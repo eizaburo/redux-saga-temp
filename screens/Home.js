@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { updateName } from '../actions/userAction'
+import { requestNeme } from '../actions/userAction'
 
 class Home extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class Home extends React.Component {
                 <Text>{this.props.state.appData.name}</Text>
                 <Button
                     title='getData'
-                    onPress={()=>this.props.updateName('foo@Home')}
+                    onPress={()=>this.props.requestNeme('foo@Home')}
                 />
             </View>
         );
@@ -26,7 +26,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateName: (name) => dispatch(updateName(name)),
+        requestNeme: (name) => dispatch(requestNeme(name)),
     }
 }
 

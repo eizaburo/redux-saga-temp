@@ -4,3 +4,10 @@ export const updateName = name => {
         name: name
     }
 }
+
+export const requestNeme = name => {
+    return {
+        type: 'REQUEST_NAME',
+        name: name
+    }
+}
